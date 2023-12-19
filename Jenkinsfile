@@ -34,6 +34,15 @@ pipeline {
                 }
             }
         }
+
+        stage ('CodeQulity') {
+            steps{
+            withSonarQubeEnv('SonarQube') {
+                 sh 'mvn clean install -f pom.xml sonar:sonar' 
+                }
+            }
+        }
+        
         stage('deploy to prod') {
             steps {
                 deploy adapters: [tomcat9(credentialsId: 'tomcat_server', path: '', url: 'http://54.86.178.31:8080')], contextPath: null, war: '**/*.war'
