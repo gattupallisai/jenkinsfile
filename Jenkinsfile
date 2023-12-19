@@ -39,7 +39,7 @@ pipeline {
         }
         stage ('CodeQulity') {
             steps{
-            withSonarQubeEnv('SonarQube') {
+            withSonarQubeEnv('sonarqube') {
                  sh 'mvn clean install -f pom.xml sonar:sonar' 
                 }
             }
