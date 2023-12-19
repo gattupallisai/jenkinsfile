@@ -32,11 +32,9 @@ pipeline {
                  failure {
                     slackSend channel: '#operations', message: 'Javaweb app build has failed', teamDomain: 'ksops', tokenCredentialId: 'slack', username: 'ksops'
                 }
-            }
-           
-               
-            
+	    }
         }
+	     
         stage ('CodeQulity') {
             steps{
             withSonarQubeEnv('sonarqube') {
